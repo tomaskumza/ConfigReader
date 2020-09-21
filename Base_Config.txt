@@ -1,0 +1,19 @@
+Base System Configuration - Containing standard/default configuration parameters.
+
+=== Section: Data Generation ===
+- Order Profile:
+ordersPerHour:		6000		//Number of Orders per Hour
+orderLinesPerOrder:	10			//Number of Order-Lines per Order
+
+- Shuttle System:
+inboundStrategy:	random		//Inbound Strategy (random/optimized)
+
+
+=== Section: System Config ===
+- Power Supply:
+powerSupply:		normal		//System Power Supply (normal/big)
+
+
+- Results:
+resultStartTime:	00:01:00	//Result-Tracking Start Time (hours:minutes:seconds)
+resultInterval:		5			//Result-Tracking Interval (m)

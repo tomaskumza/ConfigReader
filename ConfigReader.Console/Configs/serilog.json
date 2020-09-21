@@ -1,0 +1,46 @@
+﻿{
+  "Serilog": {
+    "Using": [
+      "Serilog.Sinks.File",
+      "Serilog.Enrichers.Thread",
+      "TGW.ConfigReader.Console",
+      "Serilog.Sinks.Console",
+      "Serilog.Formatting.Compact"
+    ],
+    "Enrich": [ "FromLogContext", "WithThreadId", "StringifyIndexedProperty", "WithMessageTemplate" ],
+    "MinimumLevel": {
+      "Default": "Information",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "Console",
+        "Args": {
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] ({ThreadId}) {SourceContext} - {Message:lj}{NewLine}{Exception}"
+        }
+      },
+      {
+        "Name": "Logger", 
+        "Args": {
+          "configureLogger": {
+            "WriteTo": [
+              {
+                "Name": "File",
+                "Args": {
+                  "path": ".\\Logs\\TGW.ConfigReader.Console_rendered_.log",
+                  "rollingInterval": "Day",
+                  "fileSizeLimitBytes": "104857600", //100 mb
+                  "rollOnFileSizeLimit": true,
+                  "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] ({ThreadId}) {SourceContext} - {Message:lj}{NewLine}{Exception}"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
